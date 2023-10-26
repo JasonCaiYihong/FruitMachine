@@ -1,9 +1,10 @@
 import java.util.Scanner;
 public class Driver
 {
-    int Qty = 0;//The quantity of ID and password
-    String[] StoredID = new String[10];
-    String[] Storedpwd = new String[10];
+    int qty = 0;//The quantity of users
+    int size = 10;//The maximum of users
+    String[] StoredID = new String[size];
+    String[] StoredPwd = new String[size];
     Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args)
@@ -14,7 +15,7 @@ public class Driver
 
     private void login()
     {
-        for (int i = 0; i < 3; i++)
+        for(int i = 0; i < 3; i++)
         {
             System.out.println("Please enter your ID: ");
             String ID = sc.nextLine();
@@ -22,19 +23,19 @@ public class Driver
             String pwd = sc.nextLine();
             //System.out.println(ID + pwd);
             boolean match = false;
-            for (int t = 0; t < 10; t++)
+            for(int t = 0; t < size; t++)
             {
-                if((ID.equals(StoredID[t]))&&(pwd.equals(Storedpwd[t])))
+                if((ID.equals(StoredID[t]))&&(pwd.equals(StoredPwd[t])))
                 {
                     match = true;
                 }
             }
-            if (match)
+            if(match)
             {
                 System.out.println("Login successfully!");
                 break;
             }
-            else if (2 - i == 0)
+            else if(2 - i == 0)
             {
                 System.out.println("Your account has been locked.");
                 while(true){}
@@ -51,12 +52,11 @@ public class Driver
     private void register()
     {
         System.out.println("Please set your ID: ");
-
-        StoredID[Qty] = sc.nextLine();
+        StoredID[qty] = sc.nextLine();
         System.out.println("Please set your password: ");
-        Storedpwd[Qty]  = sc.nextLine();
-        //System.out.println(StoredID[Qty] + Storedpwd[Qty] + Qty);
-        Qty++;
+        StoredPwd[qty]  = sc.nextLine();
+        //System.out.println(StoredID[qty] + StoredPwd[Qty] + qty);
+        qty++;
     }
 
     private String mainMenu()
@@ -75,18 +75,27 @@ public class Driver
 
     private void runMenu()
     {
+        String exit = "n";
         String option = mainMenu();
-        while(!option.equals("z"))
+        while(!exit.equals("y"))
         {
-            switch(option)
-            {
-                case "a" -> login();
-                case "b" -> register();
-                default -> System.out.println("Invalid option entered: "+option);
+            while(!option.equals("z")) {
+                switch (option) {
+                    case "a" -> login();
+                    case "b" -> register();
+                    default -> System.out.println("Invalid option entered: " + option);
+                }
+                System.out.println("\nPress enter key to continue...");
+                sc.nextLine();
+                option = mainMenu();
             }
-            System.out.println("\nPress enter key to continue...");
-            sc.nextLine();
-            option = mainMenu();
+            System.out.println("Are you sure you want to exit?");
+            System.out.println("All user data will be erased. y/n: ");
+            exit = sc.nextLine();
+            if(!exit.equals("y"))
+            {
+                option = mainMenu();
+            }
         }
         System.out.println("Exiting...bye");
         System.exit(0);
