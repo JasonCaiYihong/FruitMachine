@@ -99,25 +99,6 @@ public class Driver
         System.out.println("Exiting...bye");
         System.exit(0);
     }
-
-    /*private void runMenu()
-    {
-        String option = mainMenu();
-        while(!option.equals("z"))
-        {
-            switch(option)
-            {
-                case "a" -> login();
-                case "b" -> register();
-                default -> System.out.println("Invalid option entered: "+option);
-            }
-            System.out.println("\nPress enter key to continue...");
-            sc.nextLine();
-            option = mainMenu();
-        }
-        System.out.println("Exiting...bye");
-        System.exit(0);
-    }*/
 }
 
 
