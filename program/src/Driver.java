@@ -5,9 +5,15 @@ public class Driver
     String[] StoredID = new String[10];
     String[] Storedpwd = new String[10];
     Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args)
+    {
+        Driver driver = new Driver();
+        driver.runMenu();
+    }
+
     private void login()
     {
-
         for (int i = 0; i < 3; i++)
         {
             System.out.println("Please enter your ID: ");
@@ -31,32 +37,16 @@ public class Driver
             else if (2 - i == 0)
             {
                 System.out.println("Your account has been locked.");
+                while(true){}
             }
             else
             {
                 System.out.println("The ID or password is incorrect.");
                 System.out.println("You have " + (2 - i) + " more chances.");
             }
-            /*if (ID.equals(ID_I) && pwd.equals(pwd_I)) {
-                System.out.println("Login successfully!");
-                break;
-            } else if (2 - i == 0) {
-                System.out.println("Your account has been locked.");
-            } else {
-                System.out.println("The ID or password is incorrect.");
-                System.out.println("You have " + (2 - i) + " more chances.");
-            }*/
         }
 
     }
-
-    public static void main(String[] args)
-    {
-        Driver driver = new Driver();
-        driver.runMenu();
-    }
-
-
 
     private void register()
     {
@@ -69,9 +59,6 @@ public class Driver
         Qty++;
     }
 
-
-
-
     private String mainMenu()
     {
         System.out.print("""
@@ -81,8 +68,6 @@ public class Driver
         b) Register
         z) Exit     
         ==>>""");
-        //System.out.println("Enter 1 to sign in.");
-        //System.out.println("If you are a new user, enter 2 to register.");
         String option = sc.nextLine();
         return option;
     }
