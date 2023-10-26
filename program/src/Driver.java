@@ -8,21 +8,22 @@ public class Driver
     private void login()
     {
 
-        for (int i = 0; i < 3; i++) {
-
+        for (int i = 0; i < 3; i++)
+        {
             System.out.println("Please enter your ID: ");
             String ID = sc.nextLine();
             System.out.println("Please enter your password: ");
             String pwd = sc.nextLine();
+            //System.out.println(ID + pwd);
             boolean match = false;
             for (int t = 0; t < 10; t++)
             {
-                if((ID == StoredID[i])&&(pwd == Storedpwd[i]))
+                if((ID.equals(StoredID[t]))&&(pwd.equals(Storedpwd[t])))
                 {
                     match = true;
                 }
             }
-            if (match == true)
+            if (match)
             {
                 System.out.println("Login successfully!");
                 break;
@@ -60,43 +61,44 @@ public class Driver
     private void register()
     {
         System.out.println("Please set your ID: ");
+
         StoredID[Qty] = sc.nextLine();
         System.out.println("Please set your password: ");
         Storedpwd[Qty]  = sc.nextLine();
+        //System.out.println(StoredID[Qty] + Storedpwd[Qty] + Qty);
         Qty++;
     }
 
 
 
 
-    private int mainMenu()
+    private String mainMenu()
     {
         System.out.print("""
         Fruit Machine Menu
         ------------------
-        1) Login
-        2) Register
-        0) Exit     
-        ------------------""");
+        a) Login
+        b) Register
+        z) Exit     
+        ==>>""");
         //System.out.println("Enter 1 to sign in.");
         //System.out.println("If you are a new user, enter 2 to register.");
-        int option = sc.nextInt();
+        String option = sc.nextLine();
         return option;
     }
 
     private void runMenu()
     {
-        int option = mainMenu();
-        while(option != 0)
+        String option = mainMenu();
+        while(!option.equals("z"))
         {
             switch(option)
             {
-                case 1 -> login();
-                case 2 -> register();
+                case "a" -> login();
+                case "b" -> register();
                 default -> System.out.println("Invalid option entered: "+option);
             }
             System.out.println("\nPress enter key to continue...");
-            sc.nextLine();
             sc.nextLine();
             option = mainMenu();
         }
