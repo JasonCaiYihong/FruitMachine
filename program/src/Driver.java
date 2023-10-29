@@ -8,6 +8,7 @@ public class Driver
     int qty = 0;//The quantity of users
     int size = 10;//The maximum of users
     int currUser = 0;//The current user
+    String transCoin = "0";//Use String to avoid bug in the Scanner class
     String[] storedID = new String[size];
     String[] storedPwd = new String[size];
     int[] storedScore = new int[size];
@@ -64,7 +65,7 @@ public class Driver
         storedID[qty] = sc.nextLine();
         System.out.println("Please set your password: ");
         storedPwd[qty]  = sc.nextLine();
-        //System.out.println(StoredID[qty] + StoredPwd[Qty] + qty);
+        //System.out.println(storedID[qty] + " " + storedPwd[qty] + " " + qty);
         qty++;
     }
 
@@ -109,11 +110,6 @@ public class Driver
         System.exit(0);
     }
 
-    private void FruitMachine()
-    {
-
-    }
-
     private String select()
     {
         Random rand = new Random();
@@ -153,10 +149,20 @@ public class Driver
 
     private void play()
     {
-        System.out.println("Hello, " + storedID[currUser] + "! press enter to continue...");
-        sc.nextLine();
-        storedScore[currUser] = game();
-        System.out.println("You get " + storedScore[currUser] + " in this round!");
+        System.out.println("One coin can be used for one round. Please enter the number of coins: ");
+        transCoin = sc.nextLine();
+        int coin = Integer.parseInt(transCoin);//Transfer String to int
+        //System.out.println(coin);
+        storedPlays[currUser] += coin;
+        //System.out.println(storedPlays[currUser]);
+        int score = 0;//Score of one round
+        for(int i = 0; i < coin; i++)
+        {
+            score = game();
+            storedScore[currUser] += score;
+            //System.out.println(score + " " + storedScore[currUser]);
+        }
+        System.out.println("You get " + storedScore[currUser] + " !");
     }
 }
 
