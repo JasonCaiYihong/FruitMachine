@@ -155,14 +155,14 @@ public class Driver
         //System.out.println(coin);
         storedPlays[currUser] += coin;
         //System.out.println(storedPlays[currUser]);
-        int score = 0;//Score of one round
+        int score = 0;
         for(int i = 0; i < coin; i++)
         {
-            score = game();
-            storedScore[currUser] += score;
-            //System.out.println(score + " " + storedScore[currUser]);
+            score += game();
         }
-        System.out.println("You get " + storedScore[currUser] + " !");
+        storedScore[currUser] += score;
+        System.out.println(storedScore[currUser]);
+        System.out.println("You get " + score + " !");
     }
 }
 
