@@ -197,8 +197,8 @@ public class Driver
         for(int t = 0; t < size; t++)
         {
             System.out.printf("%-8s", storedID[t]);
-            System.out.printf("%-6s", storedPlays[t]);
-            System.out.printf("%-6s", storedScore[t]);
+            System.out.printf("%-6d", storedPlays[t]);
+            System.out.printf("%-6d", storedScore[t]);
             System.out.println();
         }
     }
