@@ -76,6 +76,7 @@ public class Driver
         ------------------
         a) Login
         b) Register
+        c) Ranking List
         z) Exit     
         ==>>""");
         String option = sc.nextLine();
@@ -92,6 +93,7 @@ public class Driver
                 switch (option) {
                     case "a" -> login();
                     case "b" -> register();
+                    case "c" -> rankingList();
                     default -> System.out.println("Invalid option entered: " + option);
                 }
                 System.out.println("\nPress enter to continue...");
@@ -163,6 +165,42 @@ public class Driver
         storedScore[currUser] += score;
         System.out.println(storedScore[currUser]);
         System.out.println("You get " + score + " !");
+    }
+
+    private void rankingList()
+    {
+        //bubble sort
+        for(int i = 0; i < size - 1; i++)
+        {
+            for(int j = 0; j < size - 1 - i; j++)
+            {
+                if(storedScore[j] < storedScore[j + 1])
+                {
+                    int temp1 = storedScore[j];
+                    int temp2 = storedPlays[j];
+                    String temp3 = storedID[j];
+                    String temp4 = storedPwd[j];
+                    storedScore[j] = storedScore[j + 1];
+                    storedPlays[j] = storedPlays[j + 1];
+                    storedID[j] = storedID[j + 1];
+                    storedPwd[j] = storedPwd[j + 1];
+                    storedScore[j + 1] = temp1;
+                    storedPlays[j + 1] = temp2;
+                    storedID[j + 1] = temp3;
+                    storedPwd[j + 1] = temp4;
+                }
+            }
+        }
+        System.out.println("    Ranking List");
+        System.out.println("-------------------");
+        System.out.println("ID      Plays Score");
+        for(int t = 0; t < size; t++)
+        {
+            System.out.printf("%-8s", storedID[t]);
+            System.out.printf("%-6s", storedPlays[t]);
+            System.out.printf("%-6s", storedScore[t]);
+            System.out.println();
+        }
     }
 }
 
