@@ -38,6 +38,7 @@ public class Driver
                     match = true;
                     currUser = t;
                     //System.out.println(t);
+                    break;
                 }
             }
             if(match)
@@ -61,10 +62,47 @@ public class Driver
 
     private void register()
     {
-        System.out.println("Please set your ID: ");
-        storedID[qty] = sc.nextLine();
-        System.out.println("Please set your password: ");
-        storedPwd[qty]  = sc.nextLine();
+        while(true)
+        {
+            System.out.println("Please set your ID: ");
+            storedID[qty] = sc.nextLine();
+            boolean exist = false;
+            for(int t = 0; t < size; t++)
+            {
+                if((storedID[qty].equals(storedID[t])))
+                {
+                    exist = true;
+                    if (qty == t)
+                    {
+                        exist = false;
+                    }
+                }
+            }
+            if(exist)
+            {
+                System.out.println("The ID is already exist. Please set another one.");
+            }
+            else
+            {
+                break;
+            }
+        }
+        while (true)
+        {
+            System.out.println("Please set your password: ");
+            storedPwd[qty] = sc.nextLine();
+            System.out.println("Please confirm your password: ");
+            String check = sc.nextLine();
+            if (check.equals(storedPwd[qty]))
+            {
+                System.out.println("Register successfully!");
+                break;
+            }
+            else
+            {
+                System.out.println("The two passwords you entered does not match. Please try again.");
+            }
+        }
         //System.out.println(storedID[qty] + " " + storedPwd[qty] + " " + qty);
         qty++;
     }
@@ -163,7 +201,7 @@ public class Driver
             score += game();
         }
         storedScore[currUser] += score;
-        System.out.println(storedScore[currUser]);
+        //System.out.println(storedScore[currUser]);
         System.out.println("You get " + score + " !");
     }
 
@@ -192,16 +230,14 @@ public class Driver
             }
         }
         System.out.println("    Ranking List");
-        System.out.println("-------------------");
-        System.out.println("ID      Plays Score");
+        System.out.println("--------------------");
+        System.out.println("ID       Plays Score");
         for(int t = 0; t < size; t++)
         {
-            System.out.printf("%-8s", storedID[t]);
+            System.out.printf("%-9s", storedID[t]);
             System.out.printf("%-6d", storedPlays[t]);
             System.out.printf("%-6d", storedScore[t]);
             System.out.println();
         }
     }
 }
-
-
