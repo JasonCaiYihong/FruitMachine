@@ -56,6 +56,7 @@ public class Driver {
             for (int t = 0; t < size; t++) {
                 if ((inputID.equals(storedID[t]))) {
                     exist = true;
+                    break;
                 }
             }
             if (exist) {
