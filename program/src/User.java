@@ -46,7 +46,7 @@ public class User {
             String inputID = sc.nextLine();
             boolean exist = false;
             for (int t = 0; t < size; t++) {
-                if ((inputID.equals(storedID[t]))) {
+                if (inputID.equals(storedID[t])) {
                     exist = true;
                     break;
                 }
@@ -80,6 +80,7 @@ public class User {
                 a) Login
                 b) Register
                 c) Ranking List
+                d) Search
                 z) Exit     
                 ==>>""");
         String option = sc.nextLine();
@@ -95,6 +96,7 @@ public class User {
                     case "a" -> login();
                     case "b" -> register();
                     case "c" -> rankingList();
+                    case "d" -> search();
                     default -> System.out.println("Invalid option entered: " + option);
                 }
                 System.out.println("\nPress enter to continue...");
@@ -154,6 +156,16 @@ public class User {
             System.out.printf("%-6d", storedPlays[t]);
             System.out.printf("%-6d", storedScore[t]);
             System.out.println();
+        }
+    }
+
+    private void search() {
+        System.out.println("Please enter the ID you want to search: ");
+        String inputID = sc.nextLine();
+        for (int t = 0; t < qty; t++) {
+            if (storedID[t].contains(inputID)) {
+                System.out.println(storedID[t]);
+            }
         }
     }
 }
